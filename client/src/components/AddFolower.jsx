@@ -38,16 +38,12 @@ const AddFlower = () => {
     data.append("flowerImg", formData.flowerImg);
 
     try {
-      const response = await axios.post(
-        "https://lifebahnheaventest-2.vercel.app/api/v1/flowers",
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${currentUser?.data.accessToken}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/v1/flowers`, data, {
+        headers: {
+          Authorization: `Bearer ${currentUser?.data.accessToken}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       alert("Flower Created Successfully");
 
       // Navigate to another route if necessary

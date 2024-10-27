@@ -6,6 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
+import API_URL from "../config";
 
 function PostList() {
   const { postList, addInitialPosts } = useContext(PostListData);
@@ -18,14 +19,11 @@ function PostList() {
     const fetchData = async () => {
       setFetching(true);
       try {
-        const response = await axios.get(
-          "https://lifebahnheaventest-2.vercel.app/api/v1/posts",
-          {
-            headers: {
-              Authorization: `Bearer ${currentUser?.data.accessToken}`, // Use access token
-            },
-          }
-        );
+        const response = await axios.get(`${API_URL}/api/v1/posts`, {
+          headers: {
+            Authorization: `Bearer ${currentUser?.data.accessToken}`, // Use access token
+          },
+        });
 
         const jsonData = response.data;
 
@@ -47,7 +45,7 @@ function PostList() {
   const becomeSponsor = async () => {
     try {
       const response = await axios.patch(
-        "http://localhost:3000/api/v1/users/become-sponsor",
+        `${API_URL}/api/v1/users/become-sponsor`,
         {},
         {
           headers: {

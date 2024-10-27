@@ -18,7 +18,7 @@ const Header = ({ isAuthenticated }) => {
     try {
       // First attempt to logout
       await axios.post(
-        "http://localhost:3000/api/v1/users/logout",
+        `${API_URL}/api/v1/users/logout`,
         {},
         {
           headers: {
@@ -38,7 +38,7 @@ const Header = ({ isAuthenticated }) => {
         // Handle token refresh on token expiry
         try {
           const response = await axios.post(
-            "http://localhost:3000/api/v1/users/refresh-token",
+            `${API_URL}/api/v1/users/refresh-token`,
             { refreshToken: currentUser?.data.refreshToken }
           );
           const { accessToken } = response.data.data;

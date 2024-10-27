@@ -29,7 +29,7 @@ function Rip() {
       setFetching(true);
       try {
         const response = await axios.get(
-          `https://lifebahnheaventest-2.vercel.app/api/v1/posts/post/${_id}`,
+          `${API_URL}/api/v1/posts/post/${_id}`,
           {
             headers: {
               Authorization: `Bearer ${currentUser?.data.accessToken}`, // Use access token
@@ -49,14 +49,11 @@ function Rip() {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/v1/users/normal",
-          {
-            headers: {
-              Authorization: `Bearer ${currentUser?.data.accessToken}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API_URL}/api/v1/users/normal`, {
+          headers: {
+            Authorization: `Bearer ${currentUser?.data.accessToken}`,
+          },
+        });
         // console.log("Fetched Users:", response.data.data); // Log the response
         setUsers(response.data.data); // Check if this is setting the correct users
       } catch (error) {
@@ -66,14 +63,11 @@ function Rip() {
 
     const fetchFlowers = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/v1/flowers",
-          {
-            headers: {
-              Authorization: `Bearer ${currentUser?.data.accessToken}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API_URL}/api/v1/flowers`, {
+          headers: {
+            Authorization: `Bearer ${currentUser?.data.accessToken}`,
+          },
+        });
         // console.log("Fetched flowers:", response.data.data); // Log the response
         setFlowersData(response.data.data);
       } catch (error) {
@@ -93,7 +87,7 @@ function Rip() {
 
     try {
       await axios.patch(
-        `http://localhost:3000/api/v1/users/${selectedUser}/roles`,
+        `${API_URL}/api/v1/users/${selectedUser}/roles`,
         { roles: "contributor" }, // Changing role to contributor
         {
           headers: {
