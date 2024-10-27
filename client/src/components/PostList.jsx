@@ -18,11 +18,14 @@ function PostList() {
     const fetchData = async () => {
       setFetching(true);
       try {
-        const response = await axios.get("http://localhost:3000/api/v1/posts", {
-          headers: {
-            Authorization: `Bearer ${currentUser?.data.accessToken}`, // Use access token
-          },
-        });
+        const response = await axios.get(
+          "https://lifebahnheaventest-2.vercel.app/api/v1/posts",
+          {
+            headers: {
+              Authorization: `Bearer ${currentUser?.data.accessToken}`, // Use access token
+            },
+          }
+        );
 
         const jsonData = response.data;
 

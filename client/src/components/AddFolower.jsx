@@ -39,7 +39,7 @@ const AddFlower = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/flowers",
+        "https://lifebahnheaventest-2.vercel.app/api/v1/flowers",
         data,
         {
           headers: {
