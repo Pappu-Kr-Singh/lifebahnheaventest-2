@@ -43,7 +43,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "https://lifebahnheavenserver-ochre.vercel.app/api/v1/users/register",
+        "http://localhost:3000/api/v1/users/register",
         data,
         {
           headers: {

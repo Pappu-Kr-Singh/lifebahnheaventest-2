@@ -7,16 +7,15 @@ import {
   changeCurrentPassword,
   getCurrentUser,
   updateAccountDetails,
-  updateUserAvatar,
-  upadateUserCoverImage,
-  getUserChannelProfile,
-  getWatchHistory,
+  // updateUserAvatar,
+  // upadateUserCoverImage,
   updateUserRoleToSponsor,
   getAllNormalUsers,
   updateUserRole,
 } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
+// import upload from "../middlewares/multer.middleware.js";
 
 const router = Router();
 
@@ -49,14 +48,10 @@ router.get("/normal", getAllNormalUsers);
 // Update user role
 
 router.patch("/:userId/roles", updateUserRole);
-router
-  .route("/avatar")
-  .patch(verifyJWT, upload.single("avatar"), updateUserAvatar);
-router
-  .route("/cover-image")
-  .patch(verifyJWT, upload.single("coverImage"), upadateUserCoverImage);
-router.route("/c/:username").get(verifyJWT, getUserChannelProfile); // c === channel
+// router
+//   .route("/avatar")
+//   .patch(verifyJWT, upload.single("avatar"), updateUserAvatar);
 
-router.route("/history").get(verifyJWT, getWatchHistory);
+// router.route("/history").get(verifyJWT, getWatchHistory);
 
 export default router;
