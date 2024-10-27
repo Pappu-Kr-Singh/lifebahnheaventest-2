@@ -5,6 +5,7 @@ import AddFlower from "./AddFolower";
 import AddPrayer from "./AddPrayer";
 import axios from "axios";
 import Modal from "./Modal";
+import API_URL from "../config.js";
 import { Link, useParams } from "react-router-dom";
 
 function Rip() {

@@ -6,7 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
-import API_URL from "../config";
+import API_URL from "../config.js";
 
 function PostList() {
   const { postList, addInitialPosts } = useContext(PostListData);

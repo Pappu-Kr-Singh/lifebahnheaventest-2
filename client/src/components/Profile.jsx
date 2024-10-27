@@ -3,6 +3,7 @@ import { AuthContext } from "../context/authContext";
 import { FcLike } from "react-icons/fc";
 import axios from "axios";
 import WelcomeMessage from "./WelcomeMessage";
+import API_URL from "../config.js";
 
 import { Link, useNavigate } from "react-router-dom";
 

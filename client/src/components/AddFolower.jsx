@@ -4,6 +4,7 @@ import { FlowerStore } from "../store/post-list-store";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
+import API_URL from "../config.js";
 
 const AddFlower = () => {
   const { currentUser } = useContext(AuthContext);

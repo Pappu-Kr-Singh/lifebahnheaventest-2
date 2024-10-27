@@ -3,6 +3,7 @@ import { PostList } from "../store/post-list-store";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
+import API_URL from "../config.js";
 
 const CreatePost = () => {
   const { currentUser } = useContext(AuthContext);
