@@ -44,7 +44,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        `${API_URL}/api/v1/users/register`,
+        `https://lifebahnheaventest-2.vercel.app/api/v1/users/register`,
         data,
         {
           headers: {
