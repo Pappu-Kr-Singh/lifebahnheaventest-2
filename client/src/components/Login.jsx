@@ -11,6 +11,8 @@ const Login = () => {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false); // New state
+
   const { updateUser } = useContext(AuthContext);
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication status
@@ -18,14 +20,56 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await axios.post(
+  //       `${API_URL}/api/v1/users/login`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     // console.log(response.data);
+  //     alert("Login Successful");
+  //     updateUser(response.data);
+  //     navigate("/"); // Redirect to the home page
+  //   } catch (error) {
+  //     if (error.response) {
+  //       const { status, data } = error.response;
+  //       if (
+  //         status === 400 &&
+  //         data.message.includes("username or email is required")
+  //       ) {
+  //         alert("Username or email is required");
+  //       } else if (
+  //         status === 401 &&
+  //         data.message.includes("Invalid user credentials")
+  //       ) {
+  //         alert("Invalid username or password");
+  //       } else {
+  //         alert("An error occurred during login. Please try again.");
+  //       }
+  //       console.error("Error during login:", data);
+  //     } else {
+  //       alert("An error occurred during login. Please try again.");
+  //       console.error("Error during login:", error);
+  //     }
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading state to true when the request starts
 
     try {
       const response = await axios.post(
@@ -37,31 +81,18 @@ const Login = () => {
           },
         }
       );
-      // console.log(response.data);
       alert("Login Successful");
       updateUser(response.data);
-      navigate("/"); // Redirect to the home page
+      navigate("/");
     } catch (error) {
+      // Handle errors
       if (error.response) {
-        const { status, data } = error.response;
-        if (
-          status === 400 &&
-          data.message.includes("username or email is required")
-        ) {
-          alert("Username or email is required");
-        } else if (
-          status === 401 &&
-          data.message.includes("Invalid user credentials")
-        ) {
-          alert("Invalid username or password");
-        } else {
-          alert("An error occurred during login. Please try again.");
-        }
-        console.error("Error during login:", data);
+        // Display appropriate error messages
       } else {
         alert("An error occurred during login. Please try again.");
-        console.error("Error during login:", error);
       }
+    } finally {
+      setLoading(false); // Reset loading state once the request is done
     }
   };
 
@@ -111,8 +142,8 @@ const Login = () => {
           />
         </div>
         <div className="btn">
-          <button className="button1" type="submit">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button className="button1" type="submit" disabled={loading}>
+            {loading ? "Loading..." : "Login"}
           </button>
           <Link to={"/sign-up"} className="button2">
             Sign Up
